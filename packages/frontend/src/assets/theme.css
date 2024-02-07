@@ -1,0 +1,55 @@
+.p-toast-message, .p-toast-message-icon, .p-toast-icon-close {
+  @apply text-light;
+}
+
+.p-toast-message-info {
+  @apply bg-blue-500 border-blue-600;
+}
+
+.p-toast-message-success {
+  @apply bg-green-500 border-green-600;
+}
+
+.p-toast-message-warn {
+  @apply bg-amber-500 border-amber-600;
+}
+
+.p-toast-message-error {
+  @apply bg-red-500 border-red-600;
+}
+
+.p-toast-detail {
+  @apply mt-1
+}
+
+.p-progress-spinner {
+  @apply w-18;
+}
+
+.p-progress-spinner-svg {
+  @apply important:animate-duration-1500;
+}
+
+.p-progress-spinner-circle {
+  @apply stroke-blue-500 animate-unset;
+}
+
+.p-menu .p-menuitem-link.router-link-active {
+  @apply bg-gray-200;
+}
+
+.p-menu .p-menuitem.p-focus .p-menuitem-content {
+  @apply bg-gray-100;
+}
+
+.p-tabview-nav-link {
+  @apply fw-normal;
+}
+
+.p-tabview-panels {
+  @apply px-0;
+}
+
+.p-button:focus, .p-dropdown.p-focus {
+  box-shadow: none;
+}

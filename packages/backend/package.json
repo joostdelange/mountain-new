@@ -1,0 +1,24 @@
+{
+  "name": "@mountain-cms/backend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "3.490.0",
+    "@aws-sdk/client-sesv2": "3.490.0",
+    "@aws-sdk/lib-dynamodb": "3.490.0",
+    "@smithy/smithy-client": "2.3.1",
+    "jsonwebtoken": "9.0.2",
+    "luxon": "3.4.4",
+    "uuid": "9.0.1",
+    "valibot": "0.25.0"
+  },  
+  "devDependencies": {
+    "@tsconfig/node-lts": "20.1.1",
+    "@types/aws-lambda": "8.10.131",
+    "@types/jsonwebtoken": "9.0.5",
+    "@types/luxon": "3.4.0",
+    "@types/node": "20.11.0",
+    "@types/uuid": "9.0.7",
+    "typescript": "5.3.3"
+  }
+}

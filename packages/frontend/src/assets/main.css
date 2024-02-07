@@ -1,0 +1,8 @@
+@import 'theme.css';
+@import 'transitions.css';
+@import 'helpers.css';
+
+html, body, #app {
+  font-family: 'Roboto', sans-serif;
+  @apply text-dark w-full h-full line-height-normal;
+}

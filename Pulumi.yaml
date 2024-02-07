@@ -1,0 +1,4 @@
+name: mountain-cms
+runtime: nodejs
+config:
+  aws:region: eu-central-1
