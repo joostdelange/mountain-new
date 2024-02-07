@@ -9,34 +9,34 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@he-tree/vue": "2.7.6",
-    "@vee-validate/rules": "4.12.4",
-    "@vee-validate/valibot": "4.12.4",
-    "axios": "1.6.5",
+    "@he-tree/vue": "2.8.1",
+    "@vee-validate/rules": "4.12.5",
+    "@vee-validate/valibot": "4.12.5",
+    "axios": "1.6.7",
     "luxon": "3.4.4",
     "modern-normalize": "2.0.0",
     "pinia": "2.1.7",
     "primeicons": "6.0.1",
-    "primevue": "3.46.0",
+    "primevue": "3.48.0",
     "quill": "1.3.7",
-    "valibot": "0.24.1",
-    "vee-validate": "4.12.4",
-    "vue": "3.4.10",
+    "valibot": "0.28.1",
+    "vee-validate": "4.12.5",
+    "vue": "3.4.15",
     "vue-router": "4.2.5"
   },
   "devDependencies": {
     "@tsconfig/node-lts": "20.1.1",
-    "@types/luxon": "3.4.0",
-    "@types/node": "20.11.0",
+    "@types/luxon": "3.4.2",
+    "@types/node": "20.11.16",
     "@types/quill": "2.0.14",
-    "@unocss/extractor-pug": "0.58.3",
+    "@unocss/extractor-pug": "0.58.5",
     "@vitejs/plugin-vue": "5.0.3",
     "@vue/language-plugin-pug": "1.8.27",
     "@vue/tsconfig": "0.5.1",
     "pug": "3.0.2",
     "typescript": "5.3.3",
-    "unocss": "0.58.3",
+    "unocss": "0.58.5",
     "unplugin-vue-components": "0.26.0",
-    "vite": "5.0.11"
+    "vite": "5.0.12"
   }
 }
