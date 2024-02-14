@@ -96,6 +96,8 @@ export const blockRepository = {
 
     const updateBlockResponse = await dynamodbDocumentClient.send(updateBlockCommand);
 
+    console.log(JSON.stringify(updateBlockResponse.Attributes, null, 2));
+
     return safeParse(UpdateBlockOutput, updateBlockResponse.Attributes);
   },
   async deleteBlock(blockId: string, siteId: string) {

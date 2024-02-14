@@ -8,11 +8,13 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AddPageBlockModal: typeof import('./src/components/page/AddPageBlockModal.vue')['default']
+    AutoComplete: typeof import('primevue/autocomplete')['default']
     Avatar: typeof import('primevue/avatar')['default']
     Breadcrumb: typeof import('primevue/breadcrumb')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
     Chip: typeof import('primevue/chip')['default']
+    Chips: typeof import('primevue/chips')['default']
     Column: typeof import('primevue/column')['default']
     ConfirmBlockDeleteModal: typeof import('./src/components/block/ConfirmBlockDeleteModal.vue')['default']
     ConfirmPageDeleteModal: typeof import('./src/components/page/ConfirmPageDeleteModal.vue')['default']

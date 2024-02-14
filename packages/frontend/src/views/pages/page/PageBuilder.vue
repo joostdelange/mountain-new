@@ -13,7 +13,7 @@
           i.text-gray-300.pi.pi-bars.ml-2.mr-4.cursor-move(data-pc-section="rowreordericon")
           span {{ data.block.label }}
         .flex-items-center
-          i.text-gray-400.pi.pi-pencil.mr-4.cursor-pointer(@click="data.modal = true")
+          i.text-gray-400.pi.pi-pencil.mr-4.cursor-pointer(v-if="data.SK" @click="data.modal = true")
           i.text-gray-400.pi.pi-trash.mr-2.cursor-pointer(@click="deleteBlock(index)")
         Sidebar.w-50vw(v-model:visible="data.modal" position="right")
   AddPageBlockModal(v-model="addPageBlockModal" @add="addBlock")

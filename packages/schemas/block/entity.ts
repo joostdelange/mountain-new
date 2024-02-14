@@ -19,7 +19,11 @@ export const BlockSchema = object({
     name: optional(string(), ''),
     label: optional(string(), ''),
     type: enum_(BlockFieldType),
-    options: optional(record(any())),
+    options: array(object({
+      name: string(),
+      label: string(),
+      value: array(string()),
+    })),
   })), []),
   updatedAt: optional(number(), DateTime.now().toSeconds()),
 });

@@ -130,7 +130,7 @@ const toggleUserMenu = (event: MouseEvent) => {
 const getMeResponse = await userStore.getMe();
 const getMeError = isAxiosError<GetMeError>(getMeResponse);
 
-if (getMeError && getMeResponse.status === 401) {
+if (getMeError && getMeResponse.response?.status === 401) {
   authStore.unsetToken();
   router.push({ name: 'Login' });
 }
