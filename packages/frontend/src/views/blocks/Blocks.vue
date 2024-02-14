@@ -41,8 +41,7 @@
             template(#default)
               Component(:is="Component")
             template(#fallback)
-              .w-full.h-full.flex.items-center.justify-center
-                ProgressSpinner
+              ProgressSpinner.w-full.h-full.flex.items-center.justify-center
 </template>
 
 <script setup lang="ts">

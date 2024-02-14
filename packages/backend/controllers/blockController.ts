@@ -39,7 +39,7 @@ export const blockController = () => ({
     const body = useJsonBody();
 
     const block = safeParse(UpdateBlockInput, body);
-    if (!block.success || !block.output.siteId || block.output.siteId !== session.siteId) {
+    if (!block.success || (block.output.siteId && block.output.siteId !== session.siteId)) {
       return response(422, { message: 'Error updating block', issues: block.issues });
     }
 

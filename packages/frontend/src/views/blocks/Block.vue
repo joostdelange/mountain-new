@@ -32,19 +32,52 @@
       :class="PrimeIcons.PLUS_CIRCLE"
       @click="addBlockField"
     )
-  .flex.items-center.mb-4(v-for="(field, fieldIndex) in blockStore.block.fields" :key="field.name")
-    Dropdown.mr-4(
-      v-model="field.type"
-      :options="blockFieldTypeOptions"
-    )
-    InputText.w-full.mr-4.flex-self-stretch(
-      v-model="field.label"
-      placeholder="Label"
-    )
-    i.text-gray.p-2.cursor-pointer(
-      :class="PrimeIcons.TRASH"
-      @click="deleteBlockField(fieldIndex)"
-    )
+  .mb-4(v-for="(field, fieldIndex) in blockStore.block.fields" :key="field.name")
+    .flex.items-center.w-full.mb-4
+      Dropdown.mr-4(
+        v-model="field.type"
+        :options="blockFieldTypeOptions"
+      )
+      InputText.w-full.mr-4.flex-self-stretch(
+        v-model="field.label"
+        placeholder="Label"
+      )
+      i.text-gray.p-2.cursor-pointer(
+        :class="PrimeIcons.TRASH"
+        @click="deleteBlockField(fieldIndex)"
+      )
+    .w-full
+      .flex.items-center.mt-4.mb-2.ml-8.text-gray
+        | Options
+        i.p-2.cursor-pointer(
+          :class="PrimeIcons.PLUS_CIRCLE"
+          @click="addBlockFieldOption(fieldIndex)"
+        )
+      .flex.items-center.mb-4(v-for="(fieldOption, fieldOptionIndex) in field.options")
+        i.text-gray.p-2.cursor-pointer(
+          :class="PrimeIcons.MINUS"
+          @click="deleteBlockFieldOption(fieldIndex, fieldOptionIndex)"
+        )
+        InputText.w-full.mr-4.flex-self-stretch(
+          v-model="fieldOption.label"
+          @update:model-value="(value: string) => fieldOption.name = value.toLowerCase().replace(/ /g, '_')"
+        )
+        Dropdown.w-full(
+          v-model="newFieldOptionValue[`field-${fieldIndex}-option-${fieldOptionIndex}`]"
+          :ref="(el) => (fieldOptionDropdowns[`field-${fieldIndex}-option-${fieldOptionIndex}`] = el)"
+          :options="fieldOption.value"
+          :editable="true"
+          placeholder="Add option typing something & hitting enter"
+          @focus="fieldOptionDropdowns[`field-${fieldIndex}-option-${fieldOptionIndex}`].overlayVisible = true"
+          @keyup.enter="addBlockFieldOptionValue(fieldIndex, fieldOptionIndex)"
+        )
+          template(#option="{ option, index }")
+            .w-full.flex.items-center.justify-between
+              span {{ option }}
+              i.text-gray.cursor-pointer(
+                :class="PrimeIcons.TRASH"
+                @click="deleteBlockFieldOptionValue(fieldIndex, fieldOptionIndex, index)"
+              )
 .p-sidebar-end.p-5(v-if="userStore.me.role === UserRole.ADMIN")
   Button.mr-4(
     label="Save"
@@ -73,13 +106,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onUnmounted } from 'vue';
+import { ref, computed, onUnmounted, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { isAxiosError } from 'axios';
 import { useToast } from 'primevue/usetoast';
 import { PrimeIcons } from 'primevue/api';
 import { BlockFieldType, UserRole } from '@mountain-cms/schemas';
-import type { CreateBlockError, UpdateBlockError, DeleteBlockError } from '@mountain-cms/schemas';
+import type { CreateBlockError, UpdateBlockError, DeleteBlockError, Block } from '@mountain-cms/schemas';
 import { useBlockStore, defaultBlock } from '@/stores/block';
 import { useUserStore } from '@/stores/user';
 import { useValidatedBlockUpsertForm } from '@/composables/block';
@@ -100,6 +133,8 @@ const blockUpsertForm = useValidatedBlockUpsertForm(blockStore.block);
 const saving = ref(false);
 const deleteBlockModal = ref(false);
 const deleting = ref(false);
+const newFieldOptionValue = ref<Record<string, string>>({});
+const fieldOptionDropdowns = ref<Record<string, any>>({});
 
 const blockFieldTypeOptions = computed(() => Object.values(BlockFieldType));
 
@@ -108,11 +143,34 @@ const addBlockField = () => {
     label: '',
     name: '',
     type: BlockFieldType.TEXT,
+    options: [],
   });
 };
 
 const deleteBlockField = (fieldIndex: number) => {
   blockStore.block.fields.splice(fieldIndex, 1);
+};
+
+const addBlockFieldOption = (fieldIndex: number) => {
+  blockStore.block.fields[fieldIndex].options.push({ name: '', label: '', value: [] });
+};
+
+const deleteBlockFieldOption = (fieldIndex: number, optionIndex: number) => {
+  blockStore.block.fields[fieldIndex].options.splice(optionIndex, 1);
+};
+
+const addBlockFieldOptionValue = (fieldIndex: number, fieldOptionIndex: number) => {
+  const { value } = blockStore.block.fields[fieldIndex].options[fieldOptionIndex];
+  const fieldOptionDropdown = newFieldOptionValue.value[`field-${fieldIndex}-option-${fieldOptionIndex}`];
+
+  blockStore.block.fields[fieldIndex].options[fieldOptionIndex].value.push(fieldOptionDropdown);
+
+  fieldOptionDropdowns.value[`field-${fieldIndex}-option-${fieldOptionIndex}`].overlayVisible = true;
+  newFieldOptionValue.value[`field-${fieldIndex}-option-${fieldOptionIndex}`] = '';
+};
+
+const deleteBlockFieldOptionValue = (fieldIndex: number, fieldOptionIndex: number, fieldOptionValueIndex: any) => {
+  blockStore.block.fields[fieldIndex].options[fieldOptionIndex].value.splice(fieldOptionValueIndex, 1);
 };
 
 const save = blockUpsertForm.handleSubmit(async (values) => {
