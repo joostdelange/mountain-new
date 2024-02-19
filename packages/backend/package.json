@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "3.515.0",
-    "@aws-sdk/client-sesv2": "3.515.0",
-    "@aws-sdk/lib-dynamodb": "3.515.0",
+    "@aws-sdk/client-dynamodb": "3.507.0",
+    "@aws-sdk/client-sesv2": "3.507.0",
+    "@aws-sdk/lib-dynamodb": "3.507.0",
     "jsonwebtoken": "9.0.2",
     "luxon": "3.4.4",
     "uuid": "9.0.1",
@@ -13,10 +13,10 @@
   },  
   "devDependencies": {
     "@tsconfig/node-lts": "20.1.1",
-    "@types/aws-lambda": "8.10.134",
+    "@types/aws-lambda": "8.10.133",
     "@types/jsonwebtoken": "9.0.5",
     "@types/luxon": "3.4.2",
-    "@types/node": "20.11.19",
+    "@types/node": "20.11.16",
     "@types/uuid": "9.0.8",
     "typescript": "5.3.3"
   }
