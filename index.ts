@@ -17,7 +17,20 @@ const table = new aws.dynamodb.Table(`${stack}-${project}-table`, {
   ],
 });
 
-const assetsBucket = new aws.s3.Bucket(`${stack}-${project}-assets-bucket`);
+const assetsBucket = new aws.s3.Bucket(`${stack}-${project}-assets-bucket`, {
+  versioning: { enabled: true },
+});
+
+new aws.s3.BucketPublicAccessBlock(`${stack}-${project}-assets-bucket-public-access-block`, {
+  bucket: assetsBucket.id,
+});
+
+new aws.s3.BucketOwnershipControls(`${stack}-${project}-assets-bucket-ownership-controls`, {
+  bucket: assetsBucket.id,
+  rule: {
+    objectOwnership: 'BucketOwnerPreferred',
+  },
+});
 
 const handlerRole = new aws.iam.Role(`${stack}-${project}-handler-role`, {
   assumeRolePolicy: {
