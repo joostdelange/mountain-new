@@ -9,19 +9,19 @@
     "dev:frontend": "pnpm --prefix packages/frontend dev"
   },
   "dependencies": {
-    "@pulumi/pulumi": "3.106.0",
-    "@pulumi/aws": "6.22.2"
+    "@pulumi/pulumi": "3.111.1",
+    "@pulumi/aws": "6.27.0"
   },
   "devDependencies": {
-    "@tsconfig/node-lts": "20.1.1",
-    "@types/aws-lambda": "8.10.134",
-    "@types/node": "20.11.19",
+    "@tsconfig/node-lts": "20.1.2",
+    "@types/aws-lambda": "8.10.136",
+    "@types/node": "20.11.30",
     "@mountain-cms/helpers": "link:packages/helpers",
     "@mountain-cms/schemas": "link:packages/schemas",
     "@mountain-cms/templates": "link:packages/templates",
-    "esbuild": "0.20.1",
+    "esbuild": "0.20.2",
     "glob": "10.3.10",
     "ts-node": "10.9.2",
-    "typescript": "5.3.3"
+    "typescript": "5.4.3"
   }
 }
